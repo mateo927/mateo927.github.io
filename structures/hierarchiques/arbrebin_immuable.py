@@ -1,4 +1,5 @@
 import random as rd
+from ..lineaires import file
 # On modélise le vide par un tuple vide. Donc le type vide est le type du tuple vide.
 type vide = tuple[()]
 # Un arbre est vide ou c'est un tuple constitué d'une clé et de 2 arbres, le sag et le sad.
@@ -29,6 +30,25 @@ def est_vide[T](a: arbrebin[T]) -> bool:
 
 #! A partir de maintenant, nous n'utiliserons plus les tuples.
 
+def p1(a:arbrebin):
+    if not est_vide(a):
+        print(cle(a))
+        p1(sag(a))
+        p1(sad(a))
+        
+def p2(a:arbrebin):
+    if not est_vide(a):
+        p2(sag(a))
+        print(cle(a))
+        p2(sad(a))  
+        
+def p3(a:arbrebin):
+    if not est_vide(a):
+        p3(sag(a))
+        p3(sad(a))
+        print(cle(a))
+                
+        
 def exemple() -> arbrebin[int]:
     a = creer(11, creer_feuille(9), ARBRE_VIDE)
     b = creer(18, creer_feuille(15), creer_feuille(19))
@@ -38,12 +58,14 @@ def exemple() -> arbrebin[int]:
     i = creer(28, g, h)
     return creer(21, f, i)
 
+
 def hauteur[T](a: arbrebin[T]) -> T:
     if est_vide(a):
         return 0 
     if est_vide(sag(a)) and est_vide(sad(a)): 
         return 1 
     return 1 + max(hauteur(sag(a)), hauteur(sad(a)))
+
 
 def taille[T](a: arbrebin[T]) -> T:
     if est_vide(a):
@@ -52,12 +74,14 @@ def taille[T](a: arbrebin[T]) -> T:
         return 1 
     return 1 + taille(sag(a)) + taille(sad(a))
 
+
 def somme[T](a: arbrebin[T]) -> T:
     if est_vide(a):
         return 0 
     if est_vide(sag(a)) and est_vide(sad(a)): 
         return a 
     return a + somme(sag(a)) + somme(sad(a))
+
 
 def to_str[T](a: arbrebin[T]) -> T:
     if est_vide(a):
@@ -66,12 +90,14 @@ def to_str[T](a: arbrebin[T]) -> T:
         return f"{a}" "->" "_|_"
     return f"{a}" "->" f"{to_str(sag(a))}" "->" f"{to_str(sad(a))}"
 
+
 def minimum[T](a: arbrebin[T]) -> T:
     if est_vide(a):
         return "pas de minimum" 
     if est_vide(sag(a)) and est_vide(sad(a)): 
         return a 
     return min(a + minimum(sag(a)) + minimum(sad(a)))
+
 
 def maximum[T](a: arbrebin[T]) -> T:
     if est_vide(a):
@@ -80,10 +106,12 @@ def maximum[T](a: arbrebin[T]) -> T:
         return a 
     return max(a+ maximum(sag(a)) + maximum(sad(a)))
 
+
 def sont_egaux[T](a: arbrebin[T],a1: arbrebin[T]) -> T:
     if taille(a) != taille(a1):
         return  False
     return True if sont_egaux(sad(a),sad(a1)) and sont_egaux(sag(a),sag(a1)) else False
+
 
 def genere_alea(h: int) -> arbrebin:
     if h==1:
@@ -92,10 +120,37 @@ def genere_alea(h: int) -> arbrebin:
         arbre_gauche=genere_alea(h-1)
         arbre_droite=genere_alea(h-1)
         return creer(rd.randint(1,100),arbre_gauche,arbre_droite)
-def sont_miroirs[T](a1: arbrebin[T], a2: arbrebin[T]) -> bool:
-    assert est_vide(a1) and  est_vide(a2)
-    
 
+
+def sont_miroirs[T](a1: arbrebin[T], a2: arbrebin[T]) -> bool:
+    if est_vide(a1) and  est_vide(a2):
+        return True
+    if not est_vide(a1) and  est_vide(a2):
+        return False
+    if est_vide(a1) and  not est_vide(a2):
+        return False
+    else:
+        return cle(a1)== cle(a2) and sont_miroirs(sag(a1),sad(a2))and sont_miroirs(sad(a1),sag(a2))
+    
+    
+    
+def est_symetrique[T](a: arbrebin[T]) -> bool:
+    if est_vide(a):
+        return True
+    if not est_vide(sag(a)) and  est_vide(sad(a)):
+        return False
+    if not est_vide(sad(a)) and est_vide(sag(a)):
+        return False
+    else:
+        return cle(sag(a))== cle(sad(a)) and sont_miroirs(sad(a))and sont_miroirs(sag(a))
+    
+    
+def est_abr[T](a:arbrebin)->bool:
+    if est_vide(a):
+        return
+    f=file.creer()
+    file.enfiler(f,a)
+    
 if __name__ == "__main__":
 
     import doctest
