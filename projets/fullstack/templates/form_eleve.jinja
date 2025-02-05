@@ -13,6 +13,11 @@
               <label for="prenom">Prénom : </label>
               <input type="text" name="prenom" id="prenom"
                      value="{{ eleve.prenom if eleve else '' }}"><br>
+              
+              <label for="age">Age : </label>
+              <input type="text" name="age" id="age"
+                     value="{{ eleve.age if eleve else '' }}"><br>
+
 
               <input type="hidden" name="id" value="{{ eleve.id if eleve else '' }}">
 

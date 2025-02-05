@@ -1,0 +1,21 @@
+{% extends "squelette.jinja" %}
+
+
+{# Ce template sert à la fois à créer et à modifier un élève #}
+
+{% block main %}
+       <h1>{{ 'Modifier' if classe else 'Créer' }} un élève</h1>
+       <form method="POST" action="">
+              <label for="nom">Nom : </label>
+              <input type="text" name="nom" id="nom"
+                     value="{{ classe.nom if classe else '' }}"><br>
+
+              <label for="eleves">eleves : </label>
+              <input type="liste" name="eleves" id="eleves"
+                     value="{{ classe.eleves if classe else '' }}"><br>
+
+              <input type="hidden" name="id" value="{{ classe.id if eleve else '' }}">
+
+              <button type="submit">Valider</button>
+       </form>
+{% endblock %}

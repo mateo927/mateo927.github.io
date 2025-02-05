@@ -1,9 +1,9 @@
-import psycopg2
-from psycopg2.extras import RealDictCursor
-from psycopg2.pool import ThreadedConnectionPool
+import psycopg2 # type: ignore
+from psycopg2.extras import RealDictCursor # type: ignore
+from psycopg2.pool import ThreadedConnectionPool # type: ignore
 from contextlib import contextmanager
 from typing import Generator
-import dotenv
+import dotenv # type: ignore
 import os
 
 # Chargement du fichier .env
