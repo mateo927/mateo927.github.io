@@ -1,4 +1,5 @@
 from modele import Eleve
+import services.classe as svc_classe
 
 eleves = [
         Eleve(1, 'Dupont', 'Jean',12,'T09'),
@@ -8,6 +9,10 @@ eleves = [
 
 def get_all_eleves() -> list[Eleve]:
     return eleves
+
+def get_all_prenom_eleves() -> list[Eleve]:
+    for x in eleves:
+        return x.prenom
 
 def get_eleve(id: int) -> Eleve:
     return [e for e in eleves if e.id == id][0]
@@ -25,4 +30,9 @@ def delete_eleve(id: int) -> None:
 def create_eleve(nom: str, prenom: str,age: int,classe:str) -> int:
     newid: int = max(eleves, key=lambda e: e.id).id + 1
     eleves.append(Eleve(newid, nom, prenom,age,classe))
+    if classe in svc_classe.get_all_Classes():
+        pass
+    else:
+        svc_classe.create_Classes(classe,eleves)
+        
     return newid
