@@ -5,6 +5,7 @@ from flask import Blueprint, request, render_template, redirect, url_for
 
 
 import services.classe as svc_classe
+import services.eleves as svc_eleve
 
 
 classe_bp = Blueprint('classe_bp', __name__)
@@ -16,7 +17,7 @@ def liste_classe():
 @classe_bp.route('/create', methods=['GET', 'POST'])
 def create_classe():
     if request.method == 'POST':
-        id_classe = svc_classe.create_classe(request.form['nom'], request.form['eleves'])
+        id_classe = svc_classe.create_Classes(request.form['nom'])
         return redirect(url_for('classe_bp.read_classe', id=id_classe))
     else:
         return render_template('form_classe.jinja', classe=None)
@@ -24,12 +25,13 @@ def create_classe():
 @classe_bp.route('/<int:id>', methods=['GET'])
 def read_classe(id: int):
     e = svc_classe.get_Classes(id)
-    return render_template('detail_classe.jinja', classe=e, action='afficher')
+    a=svc_eleve.get_all_eleves()
+    return render_template('detail_classe.jinja', classe=e,eleve=a, action='afficher')
 
 @classe_bp.route('/update/<int:eid>', methods=['GET', 'POST'])
 def update_classe(eid: int):
     if request.method == 'POST':
-        svc_classe.update_Classes(eid, request.form['nom'], request.form['eleves'])
+        svc_classe.update_Classes(eid, request.form['nom'])
         return redirect(url_for('classe_bp.read_classe', id=eid))
     else:
         e = svc_classe.get_Classes(eid)

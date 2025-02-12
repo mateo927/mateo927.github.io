@@ -18,13 +18,18 @@
               <input type="text" name="age" id="age"
                      value="{{ eleve.age if eleve else '' }}"><br>
               
-              <label for="Classes">Classes : </label>
-              <input type="text" name="Classes" id="Classes"
-                     value="{{ eleve.Classes if eleve else '' }}"><br>
-
-
+              <label for="classe_id">Classe : </label>
+              <select name="classe_id" id="classe_id">
+                     <option value="">--Choisissez une classe--</option>
+                     {%for c in Classes %}
+                            <option value="{{ c.id }}" {% if eleve and eleve.classe.id == c.id %}selected{% endif %}>
+                                {{ c.nom }}
+                            </option>
+                     {% endfor %}
+              </select>
               <input type="hidden" name="id" value="{{ eleve.id if eleve else '' }}">
 
               <button type="submit">Valider</button>
        </form>
 {% endblock %}
+

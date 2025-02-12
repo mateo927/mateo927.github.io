@@ -7,7 +7,7 @@ def get_all_Classes() -> list[Classe]:
     with database.get_connection() as conn:
         with conn.cursor() as cur:
             cur.execute("SELECT id, nom FROM Classe ORDER BY nom")
-            return [Classe(row[0], row[1], row[2]) for row in cur.fetchall()]
+            return [Classe(row[0], row[1]) for row in cur.fetchall()]
 
 def get_classe(id: int) -> Classe|None:
     """Retourne la classe d'ID id, ou None si non trouvée"""
@@ -17,13 +17,13 @@ def get_classe(id: int) -> Classe|None:
             row = cur.fetchone()
             if row is None:
                 return None
-            return Classe(row[0], row[1], row[2])
+            return Classe(row[0], row[1])
 
 def create_classe(nom: str) -> int:
     """Crée une nouvelle classe et retourne son ID"""
     with database.get_connection() as conn:
         with conn.cursor() as cur:
-            cur.execute("INSERT INTO Classe (nom) VALUES (%s, %s) RETURNING id", (nom))
+            cur.execute("INSERT INTO Classe (nom) VALUES ( %s) RETURNING id", (nom))
             return cur.fetchone()[0]
 
 def update_classe(id: int, nom: str) -> None:

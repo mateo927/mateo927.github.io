@@ -3,13 +3,7 @@ import services.eleves as svc_eleve
 
 
 a=svc_eleve.get_all_eleves()
-Classes=[]
-for x in a:
-    if x.classe == 'T09':
-        truc=[x.prenom, x.nom]
-    else:
-        autre_eleves=[x.prenom , x.nom]
-Classes.append(Classe(1,x.classe))
+Classes=[Classe(1,'T09'),Classe(2,'T10'),Classe(3,'T11')]
 
 def get_all_Classes() -> list[Classe]:
     return Classes
