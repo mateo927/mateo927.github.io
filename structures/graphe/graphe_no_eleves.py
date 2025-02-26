@@ -40,12 +40,22 @@ def index_sommet(s: str, g: graphe) -> int:
     for i in range (g[0]):
         if g[0][i] == s:
             return g[0][i]
+    return 'beug'
 
 
 def get_liste_adjacence(g: graphe) -> liste_adjacence:
     """Retourne la liste d'adjacence du graphe g. ALGO A CONNAITRE
     """
-    lst={}
+    lst = {}
+    for sommet in g[0]:
+        lst[sommet] = []
+        index = index_sommet(sommet, g)
+        for i, poids in enumerate(g[1][index]):
+            if poids != 0: 
+                lst[sommet].append((g[0][i], poids))
+    return lst
+
+    
 
 
 def nb_sommets(g: graphe):
@@ -57,14 +67,24 @@ def ajouter_sommet(s: str, g: graphe):
     """Ajoute une ligne et une colonne à la matrice du graphe
     Ajoute le sommet à sa liste de sommets"""
     g[0].append(s)
-    return matrice(g)
+    for ligne in g[1]:
+        ligne.append(0) 
+    g[1].append([0] * len(g[0]))
     
 def set_arete(s1:str, s2: str, g: graphe, poids: num = 1):
     """Ajoute ou remplace l'arête s1-s2 dans le graphe g.
     Le poids vaut 1 par défaut"""
-    pass
+    i1 = index_sommet(s1, g)
+    i2 = index_sommet(s2, g) 
+    g[1][i1][i2] = poids  
+    g[1][i2][i1] = poids 
 
 def get_voisins(s: str, g: graphe) -> list[tuple[str, num]]:
     """renvoie la liste des voisins du sommet s
     accompagnée du poids de l'arête associée"""
-    pass 
+    voisins = []
+    index = index_sommet(s, g) 
+    for i, poids in enumerate(g[1][index]):
+        if poids != 0: 
+            voisins.append((g[0][i], poids))
+    return voisins 
