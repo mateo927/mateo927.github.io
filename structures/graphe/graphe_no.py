@@ -75,10 +75,15 @@ def set_arete(s1:str, s2: str, g: graphe, poids: num = 1):
 def get_voisins(s: str, g: graphe) -> list[tuple[str, num]]:
     """renvoie la liste des voisins du sommet s
     accompagnée du poids de l'arête associée""" 
-    lst=[]
-    x=get_liste_adjacence(g)
-    
-    return lst
+    assert s not in sommets(g), "Le sommet existe déjà"
+
+    index_s = index_sommet(s)
+    liste = matrice(g)[index_s]
+    new_liste = []
+    for i in range(liste):
+        new_liste.append((sommets(g)[i], liste[i]))
+
+    return new_liste
         
  
 def exemple()-> graphe : 
