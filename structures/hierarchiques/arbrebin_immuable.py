@@ -159,5 +159,4 @@ if __name__ == "__main__":
     print(f"Début des tests pour {__file__}")
     res = doctest.testmod()
     print(f"Fin des tests pour {__file__}")
-
-    dessin.show(genere_alea(2))
+dessin.show(genere_alea(2))

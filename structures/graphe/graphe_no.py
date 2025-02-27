@@ -1,5 +1,3 @@
-#structures/graphes/graphe_no.py
-
 """
 Graphe non orienté
 """
@@ -12,6 +10,7 @@ type liste_adjacence = dict[str, dict[str, num]]
 # Dans ce fichier on modélise un graphe par une
 # liste d'étiquettes de sommets et d'une matrice d'adjacence
 type graphe = tuple[list[str], matrice_adjacence]
+
 
 
 def creer() -> graphe:
@@ -47,15 +46,9 @@ def get_liste_adjacence(g: graphe) -> liste_adjacence:
     """Retourne la liste d'adjacence du graphe g. ALGO A CONNAITRE
     """
     lst = {}
-    for sommet in g[0]:
-        lst[sommet] = []
-        index = index_sommet(sommet, g)
-        for i, poids in enumerate(g[1][index]):
-            if poids != 0: 
-                lst[sommet].append((g[0][i], poids))
-    return lst
-
-    
+    for sommet in sommets(g):
+        lst[sommet]= [ conn for conn in matrice(g)[index_sommet(sommet)] ]
+    return lst  
 
 
 def nb_sommets(g: graphe):
@@ -81,10 +74,18 @@ def set_arete(s1:str, s2: str, g: graphe, poids: num = 1):
 
 def get_voisins(s: str, g: graphe) -> list[tuple[str, num]]:
     """renvoie la liste des voisins du sommet s
-    accompagnée du poids de l'arête associée"""
-    voisins = []
-    index = index_sommet(s, g) 
-    for i, poids in enumerate(g[1][index]):
-        if poids != 0: 
-            voisins.append((g[0][i], poids))
-    return voisins 
+    accompagnée du poids de l'arête associée""" 
+    lst=[]
+    x=get_liste_adjacence(g)
+    
+    return lst
+        
+ 
+def exemple()-> graphe : 
+    g=creer()
+    ajouter_sommet('a',g)
+    ajouter_sommet('b',g)
+    ajouter_sommet('c',g)
+    set_arete('a','b',g)
+    set_arete('c','b',g)
+    
