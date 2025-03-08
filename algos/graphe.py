@@ -31,6 +31,7 @@ def dfs(depart: str, g: graphe_no.graphe)->list:
 
 def genere_aleatoire(nb_sommets:int, densite:float)->graphe_no.graphe:
     g=graphe_no.creer()
+    liste_connexions=[()]
     for i in range(nb_sommets):
         graphe_no.ajouter_sommet(str(i),g)
     nombre_aretes=int(densite*nb_sommets*(nb_sommets-1)/2)
@@ -38,7 +39,10 @@ def genere_aleatoire(nb_sommets:int, densite:float)->graphe_no.graphe:
         lst=graphe_no.sommets(g)
         s1=lst[randint(0,len(lst)-1)]
         s2=lst[randint(0,len(lst)-1)]
+        while s1==s2 or (s1,s2) in liste_connexions or (s2,s1) in liste_connexions:
+            s1=lst[randint(0,len(lst)-1)]
         graphe_no.set_arete(s1,s2,g)
+        liste_connexions.append((s1,s2))
     return g
 
 if __name__ == "__main__":
