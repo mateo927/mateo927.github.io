@@ -1,4 +1,5 @@
 #uv run -m algos.graphe
+from random import randint
 from structures.graphe import graphe_no
 from structures.lineaires import file
 from structures.lineaires import pile
@@ -26,7 +27,19 @@ def dfs(depart: str, g: graphe_no.graphe)->list:
                 pile.empiler(p,v)
                 deja_empiler.append(v)
     return deja_empiler
-    
+
+
+def genere_aleatoire(nb_sommets:int, densite:float)->graphe_no.graphe:
+    g=graphe_no.creer()
+    for i in range(nb_sommets):
+        graphe_no.ajouter_sommet(str(i),g)
+    nombre_aretes=int(densite*nb_sommets*(nb_sommets-1)/2)
+    for _ in range(nombre_aretes):
+        lst=graphe_no.sommets(g)
+        s1=lst[randint(0,len(lst)-1)]
+        s2=lst[randint(0,len(lst)-1)]
+        graphe_no.set_arete(s1,s2,g)
+    return g
 
 if __name__ == "__main__":
     import doctest
@@ -34,17 +47,8 @@ if __name__ == "__main__":
 
     from structures.graphe import dessin
  
-    g = graphe_no.creer()
-    graphe_no.set_arete("A", "B", g)
-    graphe_no.set_arete("B", "C", g)
-    graphe_no.set_arete("C", "D", g)
-    graphe_no.set_arete("D", "E", g)
-    graphe_no.set_arete("E", "F", g)
-    graphe_no.set_arete("F", "A", g)
-    graphe_no.set_arete("A", "C", g)
-    graphe_no.set_arete("E", "C", g)
+    g = genere_aleatoire(10, 0.5)
     dessin.genere_image(g)
-    bsf_graphe_no("A",g)
-    dfs("A",g)
+    
     
     
