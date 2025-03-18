@@ -1,5 +1,6 @@
 {
     "python.analysis.extraPaths": [
         "./projets/fullstack/services"
-    ]
+    ],
+    "python.analysis.autoImportCompletions": true
 }

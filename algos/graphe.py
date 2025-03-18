@@ -45,6 +45,7 @@ def genere_aleatoire(nb_sommets:int, densite:float)->graphe_no.graphe:
         liste_connexions.append((s1,s2))
     return g
 
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
