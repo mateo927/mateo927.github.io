@@ -71,3 +71,7 @@ def nombre_points_rupture(ordre):
     return nb
 
 
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
+    

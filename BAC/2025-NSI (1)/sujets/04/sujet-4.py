@@ -1,3 +1,10 @@
+def ecriture_binaire_entier_positif(n:int)->str:
+    binaire=""
+    for x in range (len(str(n))):
+        
+
+
+
 def echange(tab, i, j):
     '''Echange les éléments d'indice i et j dans le tableau tab.'''
     temp = ... 

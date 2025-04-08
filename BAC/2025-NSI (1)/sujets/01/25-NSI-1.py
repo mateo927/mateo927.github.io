@@ -1,18 +1,17 @@
-
-from calendar import c
-
-
 type liste_adjacente = list[list[int]]
 type graphe = liste_adjacente
 def voisins_entrants(adj:graphe, x:int)->list[int]:
-    '''Renvoie la liste des voisins entrants de x dans le graphe adj.'''
+    '''Renvoie la liste des voisins entrants de x dans le graphe adj.
+    >>> voisins_entrants([[1, 2], [2], [0], [0]], 0)
+    [2, 3]
+    >>> voisins_entrants([[1, 2], [2], [0], [0]], 1)
+    [0]
+    '''
     voisins = []
     for i in range(len(adj)):
         if x in adj[i]:
             voisins.append(i)
     return voisins
-exemple = [[1, 2], [2], [0], [0]]
-print(voisins_entrants(exemple, 0))
 
 def nombre_suivant(s):
     '''Renvoie le nombre suivant de celui representé par s
@@ -37,4 +36,7 @@ def nombre_suivant(s):
     return resultat
 
 
-
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
+    
