@@ -32,8 +32,6 @@ def eleves_du_mois(eleves, notes):
 
     return (note_maxi, meilleurs_eleves)
 
-
-
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
