@@ -1,5 +1,5 @@
-type tab = list 
-def max_et_indice(tab:tab)->tuple:
+
+def max_et_indice(tab:list)->tuple:
     '''
     >>> max_et_indice([1, 5, 6, 9, 1, 2, 3, 7, 9, 8])
     (9, 3)

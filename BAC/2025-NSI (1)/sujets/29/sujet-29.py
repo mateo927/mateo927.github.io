@@ -1,16 +1,21 @@
+animaux = [ {'nom':'Medor','espece':'chien','age':5,'enclos':2},
+{'nom':'Titine','espece':'chat','age':2,'enclos':5},
+{'nom':'Tom','espece':'chat','age':7,'enclos':4},
+{'nom':'Belle','espece':'chien','age':6,'enclos':3},
+{'nom':'Mirza','espece':'chat','age':6,'enclos':5}]
+
 def selection_enclos(tab:list[dict],numeros:int)-> list:
     '''>>> selection_enclos(animaux, 5)
-    [{'nom':'Titine', 'espece':'chat', 'age':2, 'enclos':5},
-    {'nom':'Mirza', 'espece':'chat', 'age':6, 'enclos':5}]
+    [{'nom': 'Titine', 'espece': 'chat', 'age': 2, 'enclos': 5}, {'nom': 'Mirza', 'espece': 'chat', 'age': 6, 'enclos': 5}]
     >>> selection_enclos(animaux, 2)
-    [{'nom':'Medor', 'espece':'chien', 'age':5, 'enclos':2}]
+    [{'nom': 'Medor', 'espece': 'chien', 'age': 5, 'enclos': 2}]
     >>> selection_enclos(animaux, 7)
     []
     '''
 
     tableau_final=[]
     for dict in tab :
-        if dict['enclos']== numeros:
+        if dict['enclos']==numeros:
             tableau_final.append(dict)
     return tableau_final
             
@@ -42,8 +47,7 @@ def trouver_intrus(tab, g, d):
         else:
             return trouver_intrus(tab,indice+3,d)
 
-print (f"{trouver_intrus([3, 3, 3, 9, 9, 9, 1, 1, 1, 7,2, 2, 2, 4, 4, 4, 8, 8, 8], 0, 18)}")
 
-if __name__ == "__mane__":
+if __name__ == "__main__":
     import doctest
     doctest.testmod()

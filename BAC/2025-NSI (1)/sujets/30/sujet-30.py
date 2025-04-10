@@ -18,18 +18,15 @@ def delta(tab:list)->list:
 
 
 class Expr:
+    
     """
     >>> a = Expr(Expr(None, 1, None), '+', Expr(None, 2, None))
     >>> a.infixe()
     '(1+2)'
-    >>> b = Expr(Expr(Expr(None, 1, None), '+', Expr(None, 2, None)),
-    '*', Expr(Expr(None, 3, None), '+', Expr(None, 4, None)))
+    >>> b = Expr(Expr(Expr(None, 1, None), '+', Expr(None, 2, None)),'*', Expr(Expr(None, 3, None), '+', Expr(None, 4, None)))
     >>> b.infixe()
     '((1+2)*(3+4))'
-    >>> e = Expr(
-    Expr(Expr(None, 3, None), '*', Expr(Expr(None, 8, None),
-    '+', Expr(None, 7, None))),
-    '-', Expr(Expr(None, 2, None), '+', Expr(None, 1, None)))
+    >>> e = Expr(Expr(Expr(None, 3, None), '*', Expr(Expr(None, 8, None),'+', Expr(None, 7, None))),'-', Expr(Expr(None, 2, None), '+', Expr(None, 1, None)))
     >>> e.infixe()
     '((3*(8+7))-(2+1))'
 
@@ -61,6 +58,6 @@ class Expr:
         return s
 
 
-if __name__ =="__mane__":
+if __name__ =="__main__":
     import doctest
     doctest.testmod()

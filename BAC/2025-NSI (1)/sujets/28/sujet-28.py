@@ -40,9 +40,11 @@ def incremente_voisins(grille, ligne, colonne):
     for l, c in voisins:
         if grille[l][c] != -1:  # si ce n'est pas une bombe 
             grille[l][c] += 1  # on ajoute 1 à sa valeur 
+    
 
 
 def genere_grille(bombes):
+
     """ 
     >>> genere_grille([(1, 1), (2, 4), (3, 1), (3, 3), (4, 4)])
     [[1, 1, 1, 0, 0],[1, -1, 1, 1, 1],[2, 2, 3, 2, -1],[1, -1, 2, -1, 3],[1, 1, 2, 2, -1]]
@@ -61,6 +63,6 @@ def genere_grille(bombes):
         incremente_voisins(grille,ligne,colonne)  # incrémente ses voisins 
     return grille
 
-if __name__ == "__mane__":
+if __name__ == "__main__":
     import doctest
     doctest.testmod()

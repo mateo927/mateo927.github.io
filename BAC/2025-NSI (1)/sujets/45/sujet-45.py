@@ -1,5 +1,3 @@
-
-
 def correspond(mot:str,mot_a_trous:str)->bool:
     '''
     >>> correspond('INFORMATIQUE', 'INFO*MA*IQUE')

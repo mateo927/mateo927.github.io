@@ -1,3 +1,7 @@
+def recherche
+
+
+
 alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 def position_alphabet(lettre):

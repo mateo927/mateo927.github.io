@@ -1,7 +1,8 @@
-type arbre_bin = dict[str,list[int]]| None
+type arbre_bin = dict[str,list[int]] | None
+
 a = {'F':['B','G'], 'B':['A','D'], 'A':['',''], 'D':['C','E'], 'C':['',''], 'E':['',''], 'G':['','I'], 'I':['','H'], 'H':['','']}
 
-def taille (arb:arbre_bin,lettre:str)->int:
+def taille (arb:arbre_bin,lettre:str)->int:   
     '''
     >>> taille(a, 'F')
     9
