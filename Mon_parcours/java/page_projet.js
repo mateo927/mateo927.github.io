@@ -1,9 +1,9 @@
 
 function projets(Id){
-    var text;
+    var text="cliquez sur un bouton pour voir les futurs projets que j'ai prévus dans ces domaines";
 
     if (Id=="ecole"){
-        text="Je compte continuer mes études à l'ENSIBS en 2ème année de prépa intégrée, pour ensuite commencer mon cycle ingénieur en spécialité Génie Énergétique et Électrique."
+        text="Je compte poursuivre mes études à l'ENSIBS en 2ème année de prépa intégrée, avant d'intégrer le cycle ingénieur en spécialité Génie Énergétique et Électrique. Ce choix s'inscrit dans un projet professionnel réfléchi, orienté vers les enjeux de la transition énergétique et de l'électrification des systèmes, des secteurs en forte croissance qui correspondent à mes ambitions et compétences."
     }
 
     if (Id=="bois"){
